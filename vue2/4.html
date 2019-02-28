@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .p1 {
+      border: 1px solid red;
+    }
+    .active {
+      background: red;
+    }
+    .p2 {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div id="app1">
+    <p :class="'p1'">
+      dsfsd
+      {{message}}
+    </p>
+    <!-- 对象 -->
+    <!-- 这个对象可以是data里的对象或者是 返回对象的计算属性 -->
+    <p class="p2" :class="{active: isActive}">obj</p>
+    <button @click="isActive=!isActive">btn</button>
+    
+    <!-- 数组 -->
+    <!-- 数组中可以使用3元表达式,也可以使用对象 -->
+    <p :class="[c1, c2]">arr </p>
+    <p :class="[isActive? c1: '']">arr2</p>
+    <my-component class='baz'></my-component>
+
+    <!-- style -->
+    <p v-bind:style="{color: col, 'font-size': '40px'}">style1</p>
+  </div>
+
+  <script>
+
+    Vue.component('my-component', {
+      template: "<p class='a1 a2'>my-com</p>"
+    })
+    var app1 = new Vue({
+      el: '#app1',
+      data: {
+        message: 'p0122',
+        isActive: true,
+        c1: 'p1',
+        c2: 'p2',
+        col: 'red'
+      }
+    })
+  
+  </script>
+</body>
+</html>

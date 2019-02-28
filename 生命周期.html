@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<div id="root"></div>
+
+	<script>
+		var vm = new Vue({
+			el: '#root',
+			template: "<div>{{test}}</div>",
+			data: {
+				test: 'aa'
+			},
+			beforeCreate: function() {
+				console.log('beforeCreate')
+			},
+			created: function() {
+				console.log('created')
+			},
+			beforeMount: function() {
+				console.log(this.$el)
+				console.log('beforemount')
+			},
+			mounted: function() {
+				console.log(this.$el)
+				console.log('mounted')
+			},
+			beforeDestroy: function() {
+				console.log('beforeDestroy')
+			},
+			destroyed: function() {
+				console.log('destroyed')
+			},
+			beforeUpdate: function() {
+				console.log('beforeUpdate')
+			},
+			updated: function() {
+				console.log('uodated')
+			}
+		})
+	</script>
+</body>
+</html>

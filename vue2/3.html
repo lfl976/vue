@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app1">
+    {{tag}}
+    <span v-html="tag"></span>
+    <button v-bind:disabled="able">bbbbb</button>
+    <span @click="able=!able">change</span>
+    <hr>
+    <!-- 表达式 -->
+    <p @click="num++">{{ num + 'er'}}</p>
+
+    <!-- 指令 -->
+    <p v-if="seen">look</p>
+    <button @click="seen=!seen">{{ seen }}</button>
+    <!-- 指令参数 -->
+    <p v-bind:title="'sffff'">sfff</p>
+    <!-- 动态指令用小写 -->
+    <p v-bind:[attributeN]="sffff">yyy</p>
+
+    <!-- 修饰符 -->
+    <div @click.capture="me1">me1
+      <div @click.capture.stop="me2">me2
+        <div @click="me3">me3
+          <div>21</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 计算属性 -->
+    <div>
+      <h3>{{ message}}</h3>
+      <h4>{{ rmsg}}</h4>
+      <h5>{{msg2()}}</h5>
+      <p>{{c1}}</p>
+      <p>{{c2}}</p>
+      <button @click="num++">num+1</button>
+    </div>
+  </div>
+
+  <script>
+    var g = 'ggg';
+    var app1 = new Vue({
+      el: '#app1',
+      data: {
+        tag: '<h1>dsd<h1>',
+        able: false,
+        num: 1,
+        seen: true,
+        sffff: 's',
+        attributen: "href",
+        message: 'hello vue'
+      },
+      computed: {
+        rmsg(){
+         return this.message.split('').reverse().join('')
+        },
+        c1:{
+          get: function(){
+            return this.num+1
+          },
+          set: function(a) {
+            // this.c1 = 33
+          }
+        },
+        c2(){
+          return this.c1+'5'
+        }
+      },
+      methods: {
+        msg2(){
+          return this.message.split('').reverse().join('')
+        },
+        me1() {
+          console.log('me1')
+        },
+        me2() {
+          console.log('me2')
+        },
+        me3(e){
+          console.log('me3')
+          console.log(e.target)
+        }
+      },
+      watch:{
+        num(){
+          console.log(this.num)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

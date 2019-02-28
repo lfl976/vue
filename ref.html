@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div ref="hello"
+			 @click="handleClick"
+		>
+			hello world
+		</div>
+	</div>
+	
+	<div id="app1">
+		<counter ref="one" @total="handleChange"></counter>
+		<counter ref="two" @total="handleChange"></counter>
+		<div>{{total}}</div>
+	</div>
+
+
+	<script>
+		var vm = new Vue({
+			el: '#app',
+			methods: {
+				handleClick: function() {
+					alert(this.$refs.hello.innerHTML)
+				}
+			}
+		})
+
+		Vue.component('counter', {
+			template: "<div @click='handleClick'>{{number}}</div>",
+			data: function() {
+				return {
+					number: 0
+				}
+			},
+			methods: {
+				handleClick: function() {
+					this.number ++;
+					this.$emit('total')
+				}
+			}
+		})
+
+		var vm1 = new Vue({
+			el: '#app1',
+			data: {
+				total: 0
+			},
+			methods: {
+				handleChange: function() {
+					this.total = this.$refs.one.number + this.$refs.two.number;
+				}
+			}
+		})
+	</script>
+</body>
+</html>

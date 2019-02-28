@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="vm1">
+    {{ message }}
+  </div>
+
+  <div id="vm2">
+    <list-item v-if="show"></list-item>
+    <p>{{ message }}</p>
+    <button @click="changeMsg">change message</button>
+    <button @click="show=!show">show</button>
+  </div>
+  <script>
+    var vm1 = new Vue({
+      el: '#vm1',
+      data: {
+        message: 'vuvvueueu'
+      }
+    })
+
+    // Vue实例中一些实例属性或方法
+    // $data
+    // $el
+    // $watch
+    // $solts
+
+    // 生命周期
+    Vue.component('list-item',{
+      template: '<div v-if="true">fuck</div>',
+      mounted(){
+        console.log('list item mount')
+      },
+      beforeDestroy(){
+        console.warn('list-item beforeDestory')
+      }
+    })
+    var vm2 = new Vue({
+      el: '#vm2',
+      // template: '<section class="ss">{{message}}</section>',
+      data: {
+        message: '生命周期',
+        show: true
+      },
+      methods: {
+        changeMsg() {
+          this.message = this.message + '1'
+        }
+      },
+      beforeCreate() {
+        console.error('beforeCreate')
+      },
+      created(){
+        console.error('我创建了created')
+      },
+      beforeMount(){
+        console.error('beforMont')
+      },
+      mounted(){
+        console.error('mounted')
+      },
+      beforeUpdate(){
+        console.error('beforeupdate');
+      },
+      updated(){
+        console.log(this.message)
+      },
+      beforeDestroy() {
+        console.log('boforeDestory')
+      }
+    })
+  </script>
+</body>
+</html>
