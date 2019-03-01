@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+   
+  </style>
+</head>
+<body>
+  <div id="app1">
+   <template v-if="show">
+     <span>span</span>
+     <p>heoolo😁</p>
+   </template>
+   <template v-else>
+     <p>p1</p>
+     <p>p2</p>
+   </template>
+   <button @click="show=!show">change</button>
+   <div v-for="(item, index) in items" key="item">{{item}}-{{index}}</div>
+  </div>
+
+  <script>
+
+    Vue.component('my-component', {
+      template: "<p class='a1 a2'>my-com</p>"
+    })
+    var app1 = new Vue({
+      el: '#app1',
+      data: {
+        message: 'p0122',
+        show: 'true',
+        items: [1,3,4]
+      }
+    })
+  
+  </script>
+</body>
+</html>

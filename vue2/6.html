@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+   
+  </style>
+</head>
+<body>
+  <div id="app1">
+   <input v-model="val" type="text">
+   <button @click="addItem">Add</button>
+   <hr>
+   <p v-for="(item, index) in list" :key="index">{{ item }}<button @click="removeItem(index)">remove</button></p>
+  </div>
+
+  <script>
+    var app1 = new Vue({
+      el: '#app1',
+      data: {
+        val: '',
+        list: []
+      },
+      methods: {
+        addItem(){
+          if (this.val){
+            this.list.push(this.val)
+            this.val=''
+          }
+        },
+        removeItem(i) {
+          this.list.splice(i,1)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

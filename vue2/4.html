@@ -36,7 +36,11 @@
     <my-component class='baz'></my-component>
 
     <!-- style -->
-    <p v-bind:style="{color: col, 'font-size': '40px'}">style1</p>
+    <p v-bind:style="{color: col, 'font-size': '40px', transform: 'rotate(30deg)'}">style1</p>
+    <!-- 计算属性 -->
+    <p v-bind:style="pStyle">pStyle</p>
+    <!-- 数组 -->
+    <p v-bind:style="[pStyle,oStyle]">arr</p>
   </div>
 
   <script>
@@ -51,7 +55,20 @@
         isActive: true,
         c1: 'p1',
         c2: 'p2',
-        col: 'red'
+        col: 'red',
+        oStyle: {
+          width: '100px',
+          background: 'green',
+          transform: 'rotate(30deg)'
+        }
+      },
+      computed: {
+        pStyle(){
+          return {
+            background: this.isActive ? 'yellow' : '',
+            fontSize: 30+'px'
+          }
+        }
       }
     })
   
