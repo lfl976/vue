@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+   
+  </style>
+</head>
+<body>
+  <div id="app1">
+    <sub-component>sub1</sub-component>
+    <sub-component ref='sub2'>sub2</sub-component>
+
+  </div>
+
+  <script>
+
+    Vue.component('sub-component',{
+      template: `
+        <div>sub
+          <slot></slot>
+        </div>
+      `
+    })
+    var app1 = new Vue({
+      el: '#app1',
+      data: {
+        counter: 0
+      }
+    })
+  </script>
+</body>
+</html>
