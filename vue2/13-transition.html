@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+   .fade-enter, .fade-leave-to {
+     opacity: 0;
+     color: red;
+   }
+   .fade-enter-active, .fade-leave-active {
+     transition: 5s;
+   }
+   p {
+     width: 200px;
+     border: 1px solid red;
+   }
+   .bounce-enter-active {
+     animation: bounce-in .5s;
+   }
+   .bounce-leave-active {
+     animation: bounce-in .5s reverse;
+   }
+   @keyframes bounce-in {
+     0% {
+       transform: scale(0);
+     }
+     50% {
+       transform: scale(1.5);
+     }
+     100% {
+       transform: scale(1);
+     }
+   }
+   .tra-enter, .tra-leave-to {
+     transform: translateX(10px);
+   }
+   .tra-enter-active, .tra-leave-active {
+     transition: 3s;
+   }
+  </style>
+</head>
+<body>
+  <div id="app1">
+    <button @click="show = !show">toggle</button>
+    <transition name="fade">
+      <p v-if="counter">htllo</p>
+    </transition>
+
+    <transition
+      appear
+      name="custom"
+      enter-active-class="bounce-enter-active"
+      leave-active-class="bounce-leave-active"
+    >
+      <p v-if="show">bounce</p>
+    </transition>
+
+    <button @click="show2 = !show2">show2</button>
+    <transition name="tra" mode="out-in">
+      <button v-if="show2"  key='b1'>11111</button>
+      <button v-else key='b2'>22222</button>
+    </transition>
+  </div>
+
+  <script>
+
+    
+    var app1 = new Vue({
+      el: '#app1',
+      data: {
+        counter: 0,
+        show: true,
+        show2: true
+      }
+    })
+  </script>
+</body>
+</html>

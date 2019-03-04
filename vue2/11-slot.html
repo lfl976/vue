@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+   
+  </style>
+</head>
+<body>
+  <div id="app1">
+    <base-layout>
+      default
+      {{ counter }}
+      <template>
+        <p>{{ counter }}</p>
+        <h1>h111</h1>
+      </template>
+    </base-layout>
+  </div>
+
+  <script>
+
+    Vue.component('base-layout', {
+      props: ['slotProps'],
+      mounted(){
+        console.log(this.$root)
+        console.log(this.$parent.$el)
+      },
+      template: `<div>
+        abc
+        <section>
+          <slot></slot>
+        </section>
+        <header>
+          <slot name='header'></slot>
+        </header>
+      </div>`
+    })
+    var app1 = new Vue({
+      el: '#app1',
+      data: {
+        counter: 0
+      }
+    })
+  </script>
+</body>
+</html>

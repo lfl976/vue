@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+   
+  </style>
+</head>
+<body>
+  <div id="app1">
+   <child content="Del"></child>
+   <child content="Lee"></child>
+  </div>
+
+  <script>
+    Vue.prototype.bus = new Vue()
+    Vue.component('child', {
+      data() {
+        return {
+          selfContent: this.content
+        }
+      },
+      props: {
+        content: String
+      },
+      template: `
+        <div @click="handleClick">{{selfContent}}</div>
+      `,
+      methods: {
+        handleClick() {
+          this.bus.$emit('change', this.selfContent)
+        }
+      },
+      mounted() {
+        var self = this
+        this.bus.$on('change', function(msg){
+          self.selfContent = msg
+        })
+      }
+    })
+    
+    var app1 = new Vue({
+      el: '#app1',
+      data: {
+        counter: 0,
+      }
+    })
+  </script>
+</body>
+</html>
