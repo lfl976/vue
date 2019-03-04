@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+   
+  </style>
+</head>
+<body>
+  <div id="app1">
+  <counter-button></counter-button>
+  <counter-button></counter-button>
+  <counter-button></counter-button>
+  <counter-button></counter-button>
+  <br>
+  <change-color @change="changeColor"></change-color>
+  <p>{{ color }}</p>
+  <br>
+  <s-component>you</s-component>
+  </div>
+  <script>
+    let data = {
+      count: 0
+    }
+    Vue.component('counter-button', {
+      data() {
+        return data
+      },
+      template: '<div @click="count++">{{ count }}</div>'
+    })
+
+    Vue.component('change-color', {
+      template: '<div @click="$emit(\'change\')">change</div>'
+    })
+
+    Vue.component('s-component', {
+      template: `<div>
+          fuck
+          <slot />
+        </div>`
+    })
+    var app1 = new Vue({
+      el: '#app1',
+      data: {
+        color: 'red'
+      },
+      methods: {
+        changeColor() {
+          this.color = 'blue'
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+   
+  </style>
+</head>
+<body>
+  <div id="app1">
+   <input type="text" v-model="message">
+   <p>{{ message }}</p>
+
+   <textarea v-model="sdf" name="line" id="line" cols="30" rows="10">fdsfsdfsdf</textarea>
+
+   <input type="checkbox" name="liha" value="liha" id="liha" v-model="checkArr">
+   <label for="liha">liha</label>
+   <input type="checkbox" name="mari" value="mari" id="mari" v-model="checkArr">
+   <label for="mari">mari</label>
+   <input type="checkbox" name="jack" value="jack" id="jack" v-model="checkArr">
+   <label for="jack">jack</label>
+
+  <hr>
+   <input type="radio" id="one" value="one" v-model="radVal">
+   <label for="one">one</label>
+   <input type="radio" id="two" value="two" v-model="radVal">
+   <label for="two">two</label>
+   <hr>
+    <select v-model="selectVal">
+      <option value="" disabled>请选择</option>
+      <option value="a">a</option>
+      <option value="b">b</option>
+      <option value="c">c</option>
+    </select>
+    <p>{{ selectVal }}</p>
+  </div>
+
+  <script>
+    var app1 = new Vue({
+      el: '#app1',
+      data: {
+        message: 'inp',
+        sdf: 'ssss',
+        checkArr: [],
+        radVal: '',
+        selectVal: ''
+      }
+    })
+  </script>
+</body>
+</html>
